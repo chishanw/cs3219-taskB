@@ -46,7 +46,6 @@ describe("Contacts", () => {
     });
 
     describe("GET /", () => {
-        // Test to get all contacts record
         it("should get all contacts record", (done) => {
              chai.request(app)
                  .get('/api/contacts')
