@@ -14,7 +14,7 @@ describe("Contacts", () => {
     describe("POST /", () => {
         it("should post one contact to database", (done) => {
             chai.request(app)
-                .post('/contacts')
+                .post('/api/contacts')
                 .send({
                     name: "Alice",
                     email: "alice@gmail.com",
@@ -30,7 +30,7 @@ describe("Contacts", () => {
 
         it("should post one more contact to database", (done) => {
             chai.request(app)
-                .post('/contacts')
+                .post('/api/contacts')
                 .send({
                     name: "Bob",
                     email: "bob@gmail.com",
@@ -48,7 +48,7 @@ describe("Contacts", () => {
     describe("GET /", () => {
         it("should get all contacts record", (done) => {
              chai.request(app)
-                 .get('/contacts')
+                 .get('/api/contacts')
                  .end((err, res) => {
                      res.should.have.status(200);
                      res.body.data.should.be.a('array');

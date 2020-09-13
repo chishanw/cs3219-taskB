@@ -43,4 +43,4 @@ app.listen(port, function () {
      console.log("Running RestHub on port " + port);
 });
 
-module.exports = app;
+module.exports = {app};
