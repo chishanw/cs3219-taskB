@@ -1,0 +1,46 @@
+service: contacts-api
+
+provider:
+ name: aws
+ runtime: nodejs12.x
+ memorySize: 512
+ timeout: 15
+ stage: production
+ region: us-east-2
+
+functions:
+  index:
+    handler: handler.index
+    events:
+      - http:
+          path: /contacts
+          method: get
+          cors: true
+  create:
+    handler: handler.new
+    events:
+      - http:
+          path: /contacts
+          method: post
+          cors: true
+  view:
+    handler: handler.view
+    events:
+      - http:
+          path: /contacts/{id}
+          method: get
+          cors: true
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: /contacts/{id}
+          method: put
+          cors: true
+  delete:
+    handler: handler.delete
+    events:
+      - http:
+          path: /contacts/{id}
+          method: delete
+          cors: true
