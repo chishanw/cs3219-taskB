@@ -3,3 +3,10 @@ node_js:
   - 12.3.1
 services:
   - mongodb
+install:
+  - npm install
+deploy:
+  - provider: script
+    script: serverless deploy
+    on:
+      branch: task_b3

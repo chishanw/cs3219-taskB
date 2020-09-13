@@ -18,13 +18,15 @@ app.use(bodyParser.json());
 //Connect to Mongoose and set connection variable
 // mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
 // var db = mongoose.connection;
+const connectToDatabase = require('./db');
+var db = connectToDatabase();
 
 // // Add check for DB connection
-// if (!db) {
-//     console.log("Error connecting db");
-// } else {
-//     console.log("Db connected successfully");
-// }
+if (!db) {
+    console.log("Error connecting db");
+} else {
+    console.log("Db connected successfully");
+}
 
 // Setup server port
 var port = process.env.PORT || 8080;
