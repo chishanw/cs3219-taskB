@@ -8,7 +8,7 @@ module.exports = connectToDatabase = () => {
         return Promise.resolve();
     }
     console.log('=> using new database connection');
-        return mongoose.connect(process.env['MONGODB_ATLAS_CLUSTER_URI']).then(db => {
+        return mongoose.connect(process.env['MONGODB_ATLAS_CLUSTER_URI'], { useNewUrlParser: true }).then(db => {
         isConnected = db.connections[0].readyState;
     });
 };

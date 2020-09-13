@@ -19,7 +19,9 @@ app.use(bodyParser.json());
 // mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
 // var db = mongoose.connection;
 const connectToDatabase = require('./db');
-var db = connectToDatabase();
+var db = connectToDatabase()
+     .then(() => console.log("Connected to MongoDB"))
+     .catch(err => console.log(err));
 
 // // Add check for DB connection
 if (!db) {
