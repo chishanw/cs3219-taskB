@@ -4,6 +4,7 @@ node_js:
 services:
   - mongodb
 install:
+  - npm install
   - npm install -g serverless
 deploy:
   - provider: script
