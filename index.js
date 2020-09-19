@@ -1,5 +1,7 @@
 // Import express: a Node web app framework
 let express = require('express')
+// Import CORS
+let cors = require('cors')
 // Import Body parser: a Node package for modeling MongoDB
 let bodyParser = require('body-parser');
 // Import Mongoose: Enables parsing of data from incoming requests
@@ -15,6 +17,7 @@ app.use(bodyParser.urlencoded({
      extended: true
   }));
 app.use(bodyParser.json());
+app.use(cors());
 //Connect to Mongoose and set connection variable
 // mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
 // var db = mongoose.connection;
