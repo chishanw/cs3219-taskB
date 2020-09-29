@@ -1,7 +1,8 @@
 <template>
   <b-container fluid="sm" class="w-50">
-    <h3>Create A Contact</h3>
-    <b-form @submit.prevent="submitData">
+    <h3>Edit A Contact</h3>
+    <b-spinner v-if="isLoadingContact" variant="primary" label="Loading"></b-spinner>
+    <b-form v-else @submit.prevent="updateContact">
         <b-form-input v-model="contact.name" class="mb-3" placeholder="Name" required/>
 
         <b-form-input v-model="contact.email" class="mb-3" placeholder="user@email.com" required/>
@@ -20,23 +21,35 @@
 import axios from 'axios'
 
 export default {
-  name: 'PostContact',
+  name: 'EditContact',
   data() {
     return {
+      isLoadingContact: true,
       isLoading: false,
-      contact: {
-          name: '',
-          email: '',
-          phone: '',
-          gender: ''
-      }
+      contact: null
     }
   },
+  mounted() {
+    axios.get('https://t0ytqu2r81.execute-api.us-east-2.amazonaws.com/production/contacts/' + this.$route.params.id)
+        .then(response => {
+            this.contact = response.data;
+            this.isLoadingContact = false;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+  },
   methods: {
-    submitData() {
+    updateContact() {
         this.isLoading = true;
+        const newContact = {
+            name: this.contact.name,
+            email: this.contact.email,
+            phone: this.contact.phone,
+            gender: this.contact.gender
+        }
 
-        axios.post('https://t0ytqu2r81.execute-api.us-east-2.amazonaws.com/production/contacts', this.contact)
+        axios.put('https://t0ytqu2r81.execute-api.us-east-2.amazonaws.com/production/contacts/' + this.$route.params.id, newContact)
         .then(response => {
             this.data = response;
             console.log(response);

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import GetContacts from './components/GetContacts.vue'
 import PostContact from './components/PostContact.vue'
+import EditContact from './components/EditContact.vue'
 
 Vue.config.productionTip = false
 
@@ -24,6 +25,11 @@ const routes = [
     name: "Create",
     component: PostContact,
   },
+  {
+    path: "/edit/:id",
+    name: "Edit",
+    component: EditContact
+  }
 ];
 
 const router = new VueRouter({

@@ -8,7 +8,7 @@
           {{contact.gender}}
         </b-card-text>
 
-        <b-button variant="primary" size="sm" class="mr-2">Edit</b-button>
+        <b-button variant="primary" size="sm" class="mr-2" @click="editContact(contact._id)">Edit</b-button>
         <b-button variant="danger" size="sm" @click="deleteContact(idx, contact._id)">Delete</b-button>
       </b-card>
     </div>
@@ -36,11 +36,16 @@ export default {
       })
   },
   methods: {
+    editContact(id) {
+      this.$router.push({ name: 'Edit', params: { id: id } })
+    },
     deleteContact(idx, id) {
+      this.isLoadingContact = true;
       console.log(idx);
       axios.delete('https://t0ytqu2r81.execute-api.us-east-2.amazonaws.com/production/contacts/' + id)
         .then(response => {
           this.contacts.splice(idx, 1);
+          this.isLoadingContact = false;
           console.log(response.data);
         })
         .catch(err => {
