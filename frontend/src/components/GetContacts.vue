@@ -1,11 +1,18 @@
 <template>
-  <div class="container">
-    <ul>
-      <li v-for="contact in contacts" v-bind:key="contact._id">
-        {{ contact.name }}
-      </li>
-    </ul>
-  </div>
+  <b-container fluid="sm" class="w-50">
+    <div v-for="(contact, idx) in contacts" v-bind:key="contact._id">
+      <b-card :title="contact.name" class="mt-3 mb-3">
+        <b-card-text>
+          {{contact.email}}
+          {{contact.phone}}
+          {{contact.gender}}
+        </b-card-text>
+
+        <b-button variant="primary" size="sm" class="mr-2">Edit</b-button>
+        <b-button variant="danger" size="sm" @click="deleteContact(idx, contact._id)">Delete</b-button>
+      </b-card>
+    </div>
+  </b-container>
 </template>
 
 <script>
@@ -25,8 +32,21 @@ export default {
         console.log(response.data);
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
+  },
+  methods: {
+    deleteContact(idx, id) {
+      console.log(idx);
+      axios.delete('https://t0ytqu2r81.execute-api.us-east-2.amazonaws.com/production/contacts/' + id)
+        .then(response => {
+          this.contacts.splice(idx, 1);
+          console.log(response.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
   }
 }
 </script>

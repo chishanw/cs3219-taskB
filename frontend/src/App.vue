@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h3>CS3219 OTOT Task B4</h3>
+    <h1>CS3219 OTOT Task B4</h1>
     <router-link to="/">View Contacts</router-link>
     <router-link to="/create">Create Contact</router-link>
     <router-view></router-view>
