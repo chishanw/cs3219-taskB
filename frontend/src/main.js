@@ -1,25 +1,35 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import VueRouter from 'vue-router'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import GetContacts from './components/GetContacts.vue'
 import PostContact from './components/PostContact.vue'
 
+Vue.config.productionTip = false
+
+Vue.use(VueRouter)
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
 const routes = [
-    {
-      path: "/",
-      name: "Get",
-      component: GetContacts,
-    },
-    {
-      path: "/create",
-      name: "Create",
-      component: PostContact,
-    },
-  ];
+  {
+    path: "/",
+    name: "Get",
+    component: GetContacts,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: PostContact,
+  },
+];
 
-  const router = createRouter({
-    history: createWebHistory(),
-    routes,
-  });
+const router = new VueRouter({
+  routes,
+});
 
-createApp(App).use(router).mount('#app')
+new Vue({
+  render: h => h(App),router
+}).$mount('#app')

@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/create">Create</router-link>
-    <router-view />
+    <h3>CS3219 OTOT Task B4</h3>
+    <router-link to="/">View Contacts</router-link>
+    <router-link to="/create">Create Contact</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
 
 export default {
   name: 'App'

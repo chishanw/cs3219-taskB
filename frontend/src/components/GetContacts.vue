@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
 export default {
   name: 'GetContacts',
-  props: {
-    msg: String
-  },
   data() {
     return {
       contacts: null
